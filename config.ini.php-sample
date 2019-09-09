@@ -1,0 +1,54 @@
+; Clever, but no. :)<?php exit(); // This line prevents disclosure via the browser.
+;?>
+; Top-level configuration directives are defined outside of any
+; `ini`-style section header.
+
+; Whether to print debugging information or not. Default: false
+debug = false
+
+; The default terminal prompt presented by the game. Default: "> "
+prompt = "> "
+
+; How fast (in milliseconds) the typing effect should print characters. Lower numbers are faster.
+speed = 5
+
+; The `commands` section provides a listing of specially-recognized
+; keywords that can be entered as "flags" but that return specific
+; game text in response.
+[commands]
+    help = "This is the response to the 'help' command."
+
+; The `retry_text` section provides a default set of responses for
+; when the player enters an incorrect answer ("flag") to a puzzle.
+; These can be overriden with the `retry_text` item in a given
+; puzzle's own challenge definition, below.
+[retry_text]
+    0 = "Try again."
+    1 = "That didn't seem to work."
+
+; The `challenges` section is the meat of the game, defining the
+; language that the game will present to the player as well as the
+; correct answers to the challenges presented and the progression
+; of challenges from one to the next.
+[challenges]
+
+    # Puzzle 0.
+    0[flag] = 'the_exact_answer||a_different_possible_answer'
+    0[name] = "Name for the puzzle, i.e., the title of the page."
+    0[next:a_different_possible_answer] = 'id_or_hash_of_the_next_puzzle_in_a_different_branch_of_the_game'
+    0[next:the_exact_answer] = 'id_or_hash_of_next_puzzle_here'
+    0[placeholder] = "Placeholder text that will prompt the player."
+    0[prompt] = "> "
+    0[retry_text] = "Optionally, a message to override the default set of retry_text entries with. Useful to provide a second hint to the player if they get the flag incorrect on their first attempt."
+    0[text] = "
+The textual hint for the first challenge goes here.
+
+It can span multiple lines, as well.
+"
+
+    # Puzzle 1.
+    id_or_hash_of_next_puzzle_here[flag] = 'exact_answer_for_this_puzzle'
+    id_or_hash_of_next_puzzle_here[next] = 'id_or_hash_of_following_puzzle'
+    id_or_hash_of_next_puzzle_here[text] = "
+Textual hint for the puzzle with the given hash.
+"

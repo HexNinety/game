@@ -1,0 +1,6 @@
+.DS_Store
+.vagrant
+*.swp
+*.log
+config.ini.php
+challenges/*.php
