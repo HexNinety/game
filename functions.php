@@ -29,6 +29,7 @@ function head ( array $args = [] ) {
 function gameText ( string $text = '', array $challenge = [], string $user_flag = '' ) {
     $static_substitution_map = [
         "__BASE_URL__" => "http://{$_SERVER['HTTP_HOST']}",
+        "__HTTP_DOMAIN__" => str_replace(':' . $_SERVER['SERVER_PORT'], '', "http://{$_SERVER['HTTP_HOST']}"),
         "__CHALLENGE_PROMPT__" => $challenge['prompt'],
         "__CHALLENGE_TEXT__" => $challenge['text'],
         "__NOW__" => date( 'D M d H:i:s T Y' ),

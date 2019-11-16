@@ -9,6 +9,7 @@ Vagrant.configure("2") do |config|
     # Configure PHP-FPM as a Lighttpd module.
     echo '' >> /etc/lighttpd/lighttpd.conf
     cat >> /etc/lighttpd/lighttpd.conf <<END_CONF
+    server.tag = ""
     server.modules += ( "mod_fastcgi" )
     fastcgi.server = (
         ".php" => (
